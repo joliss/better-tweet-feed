@@ -21,6 +21,10 @@ end
 
 gem 'jquery-rails'
 
+group :test, :development do
+  gem 'konacha', git: 'https://github.com/jfirebaugh/konacha'
+end
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

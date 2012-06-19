@@ -1,0 +1,3 @@
+[submodule "vendor/ember.js"]
+	path = vendor/ember.js
+	url = https://github.com/emberjs/ember.js
