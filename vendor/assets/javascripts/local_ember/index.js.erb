@@ -1,0 +1,5 @@
+<% if Rails.env.production? %>
+  <% require_asset 'local_ember/ember.prod' %>
+<% else %>
+  <% require_asset 'local_ember/ember' %>
+<% end %>

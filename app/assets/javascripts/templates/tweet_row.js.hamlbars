@@ -1,0 +1,10 @@
+= with 'view.content' do
+  .tweet.clearfix.thumbnail
+    %img.profile-picture{bind: {src: 'user.profile_image_url'}}
+    %div
+      %span.full-name
+        {{user.name}}
+      %span.screen-name
+        @{{user.screen_name}}
+    .text
+      {{text}}

@@ -1,0 +1,5 @@
+= view 'App.WhatwouldiseeFormView'
+%hr
+%h3= hb 'user.screenName'
+= each 'user.timeline' do
+  = view 'App.TweetRowView contentBinding="this"'

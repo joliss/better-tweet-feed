@@ -1,0 +1,21 @@
+.tweet {
+  margin: 8px 0;
+
+  img.profile-picture {
+    float: left;
+    margin-right: 10px;
+  }
+
+  .full-name {
+    font-weight: bold;
+  }
+
+  .screen-name {
+    font-size: small;
+    color: #999;
+  }
+
+  .text {
+    margin-top: 5px;
+  }
+}
