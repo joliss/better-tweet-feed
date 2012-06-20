@@ -10,5 +10,5 @@
   %li Replies to people you follow
 %form.form-inline
   %label Twitter name:
-  %input{type: "text", placeholder: "try jo_liss"}
+  %input.js-whatwouldisee-input{type: "text", placeholder: "try jo_liss"}
   %input.btn.btn-primary{type: "submit", value: "Show tweets", event: {action: 'doLookUp'}}

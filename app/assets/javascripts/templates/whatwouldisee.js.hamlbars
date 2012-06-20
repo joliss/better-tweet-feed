@@ -1,5 +1,6 @@
 = view 'App.WhatwouldiseeFormView'
 %hr
 %h3= hb 'user.screenName'
-= each 'user.timeline' do
-  = view 'App.TweetRowView contentBinding="this"'
+= each 'tweet in user.timeline' do
+  = unless_ 'tweet.inReplyToUserId' do
+    = view 'App.TweetRowView contentBinding="tweet"'

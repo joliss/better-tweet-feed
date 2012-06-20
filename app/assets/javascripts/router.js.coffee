@@ -13,8 +13,10 @@ App.Router = Ember.Router.extend
       route: '/whatwouldisee'
 
       doLookUp: (router, e) ->
-        if screenName = e.view.$('input[type=text]').val()
-          router.transitionTo('root.whatwouldisee.show', user: App.User.create(screenName: screenName))
+        if screenName = $('.js-whatwouldisee-input').val()
+          Ember.run =>
+            router.transitionTo('root.whatwouldisee.show', user: App.User.create(screenName: screenName))
+        $('.js-whatwouldisee-input').focus()
 
       index: Ember.Route.extend
         route: '/'

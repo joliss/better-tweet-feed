@@ -1,10 +1,12 @@
-= with 'view.content' do
-  .tweet.clearfix.thumbnail
-    %img.profile-picture{bind: {src: 'user.profile_image_url'}}
-    %div
+.tweet.clearfix.thumbnail
+  .profile-picture
+    %a{bind: {href: 'view.content.user.profileUrl'}}
+      %img.profile-picture-img{bind: {src: 'view.content.user.profileImageUrl'}}
+  %div
+    %a{bind: {href: 'view.content.user.profileUrl'}}
       %span.full-name
-        {{user.name}}
+        {{view.content.user.name}}
       %span.screen-name
-        @{{user.screen_name}}
-    .text
-      {{text}}
+        @{{view.content.user.screenName}}
+  .text
+    {{{view.linkedText}}}

@@ -1,9 +1,14 @@
 .tweet {
   margin: 8px 0;
 
-  img.profile-picture {
+  .profile-picture {
     float: left;
     margin-right: 10px;
+
+    .profile-picture-img {
+      width: 48px;
+      height: 48px;
+    }
   }
 
   .full-name {
