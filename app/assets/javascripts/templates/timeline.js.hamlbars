@@ -1,3 +1,2 @@
 = each 'tweet in view.content' do
-  = unless_ 'tweet.inReplyToUserId' do
-    = view 'App.TweetRowView contentBinding="tweet"'
+  = view 'App.TweetRowView contentBinding="tweet" showRetweetsBinding="view.showRetweets" showRepliesBinding="view.showReplies"'

@@ -16,3 +16,8 @@ App.Helpers.camelizeObject = (o) ->
       delete o[key]
     if typeof value == 'object'
       App.Helpers.camelizeObject(value)
+
+App.set('date', new Date)
+setInterval(->
+  App.set('date', new Date)
+, 30000)

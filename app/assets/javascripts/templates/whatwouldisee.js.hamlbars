@@ -1,4 +1,13 @@
 = view 'App.WhatwouldiseeFormView'
 %hr
 = view 'App.ProfileCardView contentBinding="user"'
-= view 'App.TimelineView contentBinding="user.timeline"'
+%form.form-inline.pull-right
+  %label.checkbox
+    = view 'Ember.Checkbox checkedBinding="view.showRetweets"' do
+      Show retweets,
+  %label.checkbox
+    = view 'Ember.Checkbox checkedBinding="view.showReplies"' do
+      replies
+%h3
+  Tweets
+= view 'App.TimelineView contentBinding="user.timeline" viewName="timelineView" showRetweetsBinding="view.showRetweets" showRepliesBinding="view.showReplies"'

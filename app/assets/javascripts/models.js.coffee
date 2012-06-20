@@ -64,12 +64,15 @@ App.UserTimeline.reopenClass
     query = getQuery(options)
     $.ajax
       method: 'get'
-      url: "/twitter-api/1/statuses/user_timeline.json?#{query}&include_rts=true&include_entities=true&count=50"
+      url: "/twitter-api/1/statuses/user_timeline.json?#{query}&include_rts=true&include_entities=true&count=200"
       success: (data) =>
         userTimeline.pushObjects Ember.A(data).map (status) ->
           App.Helpers.camelizeObject(status)
-          status = status.retweetedStatus ? status
-          status.user = App.User.create(status.user)
-          App.Tweet.create(status)
+          createTweet = (status) =>
+            if status.retweetedStatus?
+              status.retweetedStatus = createTweet(status.retweetedStatus)
+            status.user = App.User.create(status.user)
+            App.Tweet.create(status)
+          createTweet(status)
         userTimeline.set('loaded', true)
     userTimeline

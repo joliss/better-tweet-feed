@@ -1,12 +1,18 @@
-.tweet.clearfix.thumbnail
-  .profile-image
-    %a{bind: {href: 'view.content.user.profileUrl'}}
-      %img{bind: {src: 'view.content.user.profileImageUrl'}}
-  %div
-    %a{bind: {href: 'view.content.user.profileUrl'}}
-      %span.full-name
-        {{view.content.user.name}}
-      %span.screen-name
-        @{{view.content.user.screenName}}
-  .text
-    {{{view.linkedText}}}
+= if_ 'view.visible' do
+  = if_ 'view.content.retweetedStatus' do
+    = view 'App.TweetRowView contentBinding="view.content.retweetedStatus" showReplies="true"' # recurse into retweetedStatus
+    = else_
+    .tweet.clearfix.thumbnail
+      .profile-image
+        %a{bind: {href: 'view.content.user.profileUrl'}}
+          %img{bind: {src: 'view.content.user.profileImageUrl'}}
+      .date.pull-right
+        {{view.humanReadableDate}}
+      %div
+        %a{bind: {href: 'view.content.user.profileUrl'}}
+          %span.full-name
+            {{view.content.user.name}}
+          %span.screen-name
+            @{{view.content.user.screenName}}
+      .text
+        {{{view.linkedText}}}
