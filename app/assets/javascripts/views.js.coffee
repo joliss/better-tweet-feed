@@ -12,9 +12,6 @@ App.WhatwouldiseeFormController = Ember.Controller.extend()
 App.WhatwouldiseeFormView = Ember.View.extend
   templateName: 'templates/whatwouldisee_form'
 
-  init: ->
-    @_super()
-
 App.WhatwouldiseeController = Ember.Controller.extend
   userBinding: 'content'
 
@@ -46,18 +43,27 @@ App.TweetRowView = Ember.View.extend
       (@get('showReplies') or not @getPath('content.inReplyToUserId'))
   ).property('showRetweets', 'showReplies', 'content.retweeted', 'content.inReplyToUserId')
 
-  linkedText: Ember.computed(->
-    # We should have a linking library that is conformant with
-    # https://github.com/twitter/twitter-text-conformance/blob/master/autolink.yml
-    # In the mean-time, we go very restrictive on the characters we allow, to
-    # guard against XSS. When editing this, make sure that the replacement
-    # statements can't mangle each other's HTML (e.g. [@#] in URL).
-    $('<div/>').text(@getPath('content.text')).html() \
-      .replace(/\b(https?:\/\/([-a-zA-Z0-9./]+))/, '<a href="$1">$2</a>') \
-      .replace(/\B@([a-zA-Z0-9_]+)/g, (s, p1) ->
-        "<a href='#{App.Helpers.profileUrl(p1)}'>@#{p1}</a>") \
-      .replace(/\B#([a-zA-Z0-9_]+)/g, '<a href="https://twitter.com/search/%23$1">#$1</a>')
-  ).property('content.text')
+  linkifiedText: Ember.computed(->
+    characters = @getPath('content.text').split('')
+    characters = (if c == '<' then '&lt;' \
+                  else if c == '>' then '&gt;' \
+                  else if c == '&' then '&amp;' \
+                  else if c == "'" then '&#39;' \
+                  else if c == '"' then '&#34;' \
+                  else c \
+                  for c in characters)
+    replaceCharacters = (indices, newText) ->
+      index = indices[0]
+      howMany = indices[1] - index
+      characters.splice(index, howMany, newText, ('' for i in [1...howMany])...)
+    for hashtag in @getPath('content.entities.hashtags') ? []
+      replaceCharacters(hashtag.indices, "<a href='https://twitter.com/search/%23#{hashtag.text}'>##{hashtag.text}</a>")
+    for url in @getPath('content.entities.urls') ? []
+      replaceCharacters(url.indices, "<a href='#{url.expandedUrl}'>#{url.displayUrl}</a>")
+    for userMention in @getPath('content.entities.userMentions') ? []
+      replaceCharacters(userMention.indices, "<a href='#{App.Helpers.profileUrl(userMention.screenName)}'>@#{userMention.screenName}</a>")
+    characters.join ''
+  ).property('content.text', 'content.entities')
 
   humanReadableDate: Ember.computed(->
     delta = ((+new Date) - (+Date.parse(@getPath('content.createdAt')))) / 1000

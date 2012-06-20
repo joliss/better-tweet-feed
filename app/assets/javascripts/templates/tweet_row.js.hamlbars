@@ -15,4 +15,4 @@
           %span.screen-name
             @{{view.content.user.screenName}}
       .text
-        {{{view.linkedText}}}
+        {{{view.linkifiedText}}}
