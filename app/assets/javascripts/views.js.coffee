@@ -23,6 +23,13 @@ App.WhatwouldiseeView = Ember.View.extend
 
 # Components
 
+App.ProfileCardView = Ember.View.extend
+  templateName: 'templates/profile_card'
+
+  init: ->
+    @_super()
+    window.x = this
+
 App.TweetRowView = Ember.View.extend
   templateName: 'templates/tweet_row'
 

@@ -1,0 +1,28 @@
+.profile-card.thumbnail.clearfix
+  = if_ 'view.content.loaded' do
+    .profile-image-container
+      %img.profile-image{bind: {src: 'view.content.profileCardImageUrl'}, alt: ''}
+    .stats
+      %p
+        %span.stats-count {{view.content.statusesCount}}
+        tweets
+      %p
+        %span.stats-count {{view.content.friendsCount}}
+        following
+      %p
+        %span.stats-count {{view.content.followersCount}}
+        followers
+    .main-info
+      %h2.full-name {{view.content.name}}
+      %h3.screen-name @{{view.content.screenName}}
+      %p.description
+        {{view.content.description}}
+      %p
+        %span.location
+          {{view.content.location}}
+        %span.url
+          %a{bind: {href: 'view.content.url'}}
+            {{view.content.url}}
+      %div.twitter-profile-link
+        %a{bind: {href: 'view.content.twitterProfileUrl'}}
+          {{view.content.twitterProfileUrl}}

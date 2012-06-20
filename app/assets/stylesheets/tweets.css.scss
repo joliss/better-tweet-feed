@@ -1,13 +1,16 @@
+@import 'variables';
+
 .tweet {
   margin: 8px 0;
 
-  .profile-picture {
+  .profile-image {
     float: left;
     margin-right: 10px;
 
-    .profile-picture-img {
+    img {
       width: 48px;
       height: 48px;
+      border-radius: 5px;
     }
   }
 
@@ -17,7 +20,7 @@
 
   .screen-name {
     font-size: small;
-    color: #999;
+    color: $gray;
   }
 
   .text {

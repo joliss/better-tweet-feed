@@ -1,7 +1,7 @@
 .tweet.clearfix.thumbnail
-  .profile-picture
+  .profile-image
     %a{bind: {href: 'view.content.user.profileUrl'}}
-      %img.profile-picture-img{bind: {src: 'view.content.user.profileImageUrl'}}
+      %img{bind: {src: 'view.content.user.profileImageUrl'}}
   %div
     %a{bind: {href: 'view.content.user.profileUrl'}}
       %span.full-name

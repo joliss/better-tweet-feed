@@ -1,0 +1,55 @@
+@import 'variables';
+
+.profile-card {
+  min-height: 128px;
+
+  .profile-image-container {
+    float: left;
+    width: 128px;
+    margin-right: 15px;
+
+    .profile-image {
+      height: 128px;
+      border-radius: 5px;
+    }
+  }
+
+  .stats {
+    float: right;
+    width: 150px;
+    margin-top: 30px;
+  }
+
+  .main-info {
+    float: left;
+    width: 550px;
+    margin-top: -7px;
+
+    .screen-name {
+      color: $gray;
+      font-weight: normal;
+      position: relative;
+      top: -4px;
+    }
+  }
+
+  .description {
+    color: $gray;
+    font-style: italic;
+  }
+
+  .stats {
+    color: $gray;
+    text-transform: uppercase;
+
+    .stats-count {
+      color: black;
+      font-weight: bold;
+    }
+  }
+
+  .location {
+    margin-right: 10px;
+    color: $gray;
+  }
+}

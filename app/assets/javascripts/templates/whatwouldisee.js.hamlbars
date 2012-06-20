@@ -1,6 +1,6 @@
 = view 'App.WhatwouldiseeFormView'
 %hr
-%h3= hb 'user.screenName'
+= view 'App.ProfileCardView contentBinding="user"'
 = each 'tweet in user.timeline' do
   = unless_ 'tweet.inReplyToUserId' do
     = view 'App.TweetRowView contentBinding="tweet"'
