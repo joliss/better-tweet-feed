@@ -1,6 +1,4 @@
 = view 'App.WhatwouldiseeFormView'
 %hr
 = view 'App.ProfileCardView contentBinding="user"'
-= each 'tweet in user.timeline' do
-  = unless_ 'tweet.inReplyToUserId' do
-    = view 'App.TweetRowView contentBinding="tweet"'
+= view 'App.TimelineView contentBinding="user.timeline"'
