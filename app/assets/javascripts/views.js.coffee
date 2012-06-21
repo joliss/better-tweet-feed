@@ -15,14 +15,14 @@ App.HomeController = Ember.Controller.extend
 App.HomeView = Ember.View.extend
   templateName: 'templates/home'
 
-App.WhatwouldiseeController = Ember.Controller.extend
+App.UserProfileController = Ember.Controller.extend
   userBinding: 'content'
 
-App.WhatwouldiseeView = Ember.View.extend
+App.UserProfileView = Ember.View.extend
   showRetweets: true
   showReplies: true
 
-  templateName: 'templates/whatwouldisee'
+  templateName: 'templates/user_profile'
 
 # Components
 

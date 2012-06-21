@@ -10,23 +10,21 @@ App.Router = Ember.Router.extend
       connectOutlets: (router, context) ->
         router.get('applicationController').connectOutlet('home')
 
-    whatwouldisee: Ember.Route.extend
-      route: '/whatwouldisee'
+    userProfile: Ember.Route.extend
+      route: '/:user'
+
+      serialize: (router, context) ->
+        return user: context.screenName
+
+      deserialize: (router, context) ->
+        return App.User.find(screenName: context.user)
+
+      connectOutlets: (router, context) ->
+        router.get('applicationController').connectOutlet('userProfile', context)
 
       doLookUp: (router, e) ->
-        if screenName = $('.js-whatwouldisee-input').val()
+        if screenName = $('.js-user-search-input').val()
           Ember.run =>
-            router.transitionTo('root.whatwouldisee.show', App.User.find(screenName: screenName))
-        $('.js-whatwouldisee-input').focus()
+            router.transitionTo('root.userProfile', App.User.find(screenName: screenName))
+        $('.js-user-search-input').focus()
 
-      show: Ember.Route.extend
-        route: '/:user'
-
-        serialize: (router, context) ->
-          return user: context.screenName
-
-        deserialize: (router, context) ->
-          return App.User.find(screenName: context.user)
-
-        connectOutlets: (router, context) ->
-          router.get('applicationController').connectOutlet('whatwouldisee', context)

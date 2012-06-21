@@ -7,7 +7,7 @@ App.Helpers.profileUrl = (screenName) ->
   #"https://twitter.com/#{screenName}"
   # Must have leading slash or middleclick doesn't work in Chrome
   # http://code.google.com/p/chromium/issues/detail?id=2913
-  "/#/whatwouldisee/#{screenName}"
+  "/#/#{screenName}"
 
 App.Helpers.camelizeObject = (o) ->
   for own key, value of o
