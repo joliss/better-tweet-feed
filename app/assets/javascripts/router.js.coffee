@@ -22,9 +22,8 @@ App.Router = Ember.Router.extend
       connectOutlets: (router, context) ->
         router.get('applicationController').connectOutlet('userProfile', context)
 
-      doLookUp: (router, e) ->
-        if screenName = $('.js-user-search-input').val()
-          Ember.run =>
-            router.transitionTo('root.userProfile', App.User.find(screenName: screenName))
-        $('.js-user-search-input').focus()
-
+    doLookUp: (router, e) ->
+      if screenName = $('.js-user-search-input').val().replace(/^@/, '')
+        Ember.run =>
+          router.transitionTo('root.userProfile', App.User.find(screenName: screenName))
+      $('.js-user-search-input').val('').blur()

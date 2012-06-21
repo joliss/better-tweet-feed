@@ -6,6 +6,10 @@
 
 @import "variables";
 
+.application-container {
+  margin-top: 40px;
+}
+
 .loading-notice {
   color: $gray;
   margin: 20px 0;

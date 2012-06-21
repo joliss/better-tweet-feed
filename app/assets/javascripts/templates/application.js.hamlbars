@@ -1,2 +1,10 @@
-.container
+.navbar.navbar-fixed-top
+  .navbar-inner
+    .container
+      %a.brand{href: '/'}
+        BTFeed
+      %form.navbar-search.pull-right{event: {on: 'submit', action: 'doLookUp'}}
+        %input.search-query.js-user-search-input{type: 'text', placeholder: '@user'}
+
+.container.application-container
   = outlet
