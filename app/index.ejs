@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+  <head>
+    <meta name="csrf-param" content="authenticity_token" />
+    <meta name="csrf-token" content="<%= authenticityToken %>" />
+    <link rel="stylesheet" href="/assets/application.css" />
+    <script src="/assets/application.js"></script>
+    <% if (app.settings.env === 'production') { %>
+      <script type="text/javascript">
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-32842489-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+          ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+
+      </script>
+    <% } %>
+  </head>
+  <body>
+    <div id="application-info" style="display: none;">
+      <div class="container">
+        <div class="hero-unit">
+	  <a href="http://i.imgur.com/RmORA.png" class="thumbnail pull-right" style="margin: 0 0 0 20px;"><img src="http://i.imgur.com/RmORA.png" style="width: 250px;" alt=""></a>
+          <h1>Better Tweet Feed</h1>
+          <p>I really just wanted to build a tool to view people's profiles
+	  with replies filtered out. But then I ended up implementing timelines
+          and profiles, because it was so easy with <a
+            href="http://emberjs.com/">Ember</a>.</p>
+          <p>
+          <a class="btn btn-primary btn-large" href="/sessions/connect">
+            Sign in with Twitter
+          </a>
+          </p>
+          <p>&nbsp;<!-- I can't believe how lazy I am. --></p>
+          <p>Oh and by the way, Twitter's OAuth is being skittish. If it times out on you, hit reload.</p>
+        </div>
+      </div>
+    </div>
+    <div id="js-application-root"></div>
+  </body>
+</html>

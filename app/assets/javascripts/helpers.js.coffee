@@ -19,3 +19,6 @@ App.set('date', new Date)
 setInterval(->
   App.set('date', new Date)
 , 30000)
+
+# Cookie handling in JavaScript, oh the agony!
+App.set 'signedIn', !!/oauthaccesstoken/i.exec(document.cookie)

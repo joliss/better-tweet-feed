@@ -3,8 +3,21 @@
     .container
       %a.brand{href: '/'}
         BTFeed
-      %form.navbar-search.pull-right{event: {on: 'submit', action: 'doLookUp'}}
-        %input.search-query.js-user-search-input{type: 'text', placeholder: '@user'}
+      = if_ 'App.signedIn' do
+        %form.navbar-search{event: {on: 'submit', action: 'doLookUp'}}
+          %input.search-query.js-user-search-input{type: 'text', placeholder: '@user'}
+      .pull-right
+        = if_ 'App.signedIn' do
+          %ul.nav
+            %li
+              %a{href: '/sessions/signout'}
+                Sign out
+          = else_
+          %ul.nav
+            %li
+              %a{href: '/sessions/connect'}
+                Sign in with Twitter
 
 .container.application-container
-  = outlet
+  = if_ 'App.signedIn' do
+    = outlet
