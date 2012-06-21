@@ -7,7 +7,8 @@ App.Router = Ember.Router.extend
   root: Ember.Route.extend
     index: Ember.Route.extend
       route: '/'
-      redirectsTo: 'whatwouldisee.index'
+      connectOutlets: (router, context) ->
+        router.get('applicationController').connectOutlet('home')
 
     whatwouldisee: Ember.Route.extend
       route: '/whatwouldisee'

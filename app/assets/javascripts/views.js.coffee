@@ -7,6 +7,14 @@ App.ApplicationController = Ember.Controller.extend()
 App.ApplicationView = Ember.View.extend
   templateName: 'templates/application'
 
+App.HomeController = Ember.Controller.extend
+  homeTimeline: Ember.computed(->
+    App.HomeTimeline.find()
+  ).property()
+
+App.HomeView = Ember.View.extend
+  templateName: 'templates/home'
+
 App.WhatwouldiseeFormController = Ember.Controller.extend()
 
 App.WhatwouldiseeFormView = Ember.View.extend

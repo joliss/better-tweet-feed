@@ -57,22 +57,37 @@ App.Tweet = Ember.Object.extend()
 App.UserTimeline = Ember.ArrayProxy.extend
   screenName: null
 
+makeTimeline = (data) ->
+  Ember.A(data).map (status) ->
+    App.Helpers.camelizeObject(status)
+    createTweet = (status) =>
+      if status.retweetedStatus?
+        status.retweetedStatus = createTweet(status.retweetedStatus)
+      status.user = App.User.create(status.user)
+      App.Tweet.create(status)
+    createTweet(status)
+
 App.UserTimeline.reopenClass
   find: (options) ->
-    userTimeline = App.UserTimeline.create(options)
-    userTimeline.set('content', Ember.A([]))
+    timeline = App.UserTimeline.create(options)
     query = getQuery(options)
     $.ajax
       method: 'get'
-      url: "/twitter-api/1/statuses/user_timeline.json?#{query}&include_rts=true&include_entities=true&count=200"
+      url: "/twitter-api/1/statuses/user_timeline.json?#{query}&include_rts=true&include_entities=true&count=20"
       success: (data) =>
-        userTimeline.pushObjects Ember.A(data).map (status) ->
-          App.Helpers.camelizeObject(status)
-          createTweet = (status) =>
-            if status.retweetedStatus?
-              status.retweetedStatus = createTweet(status.retweetedStatus)
-            status.user = App.User.create(status.user)
-            App.Tweet.create(status)
-          createTweet(status)
-        userTimeline.set('loaded', true)
-    userTimeline
+        timeline.set 'content', makeTimeline(data)
+        timeline.set 'loaded', true
+    timeline
+
+App.HomeTimeline = Ember.ArrayProxy.extend()
+
+App.HomeTimeline.reopenClass
+  find: ->
+    timeline = App.HomeTimeline.create()
+    $.ajax
+      method: 'get'
+      url: "/twitter-api/1/statuses/home_timeline.json?include_rts=true&include_entities=true&count=20"
+      success: (data) =>
+        timeline.set 'content', makeTimeline(data)
+        timeline.set 'loaded', true
+    timeline

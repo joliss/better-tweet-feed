@@ -1,0 +1,1 @@
+= view 'App.TimelineView contentBinding="homeTimeline" viewName="timelineView" showRetweets="true" showReplies="true"'
