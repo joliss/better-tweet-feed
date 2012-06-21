@@ -66,10 +66,10 @@ App.TweetRowView = Ember.View.extend
       characters.splice(index, howMany, newText, ('' for i in [1...howMany])...)
     for hashtag in @getPath('content.entities.hashtags') ? []
       replaceCharacters(hashtag.indices, "<a href='https://twitter.com/search/%23#{hashtag.text}'>##{hashtag.text}</a>")
-    for url in @getPath('content.entities.urls') ? []
-      replaceCharacters(url.indices, "<a href='#{url.expandedUrl}'>#{url.displayUrl}</a>")
     for userMention in @getPath('content.entities.userMentions') ? []
       replaceCharacters(userMention.indices, "<a href='#{App.Helpers.profileUrl(userMention.screenName)}'>@#{userMention.screenName}</a>")
+    for url in (@getPath('content.entities.urls') ? []).concat(@getPath('content.entities.media') ? [])
+      replaceCharacters(url.indices, "<a href='#{url.expandedUrl}'>#{url.displayUrl}</a>")
     characters.join ''
   ).property('content.text', 'content.entities')
 
