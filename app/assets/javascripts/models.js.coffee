@@ -33,6 +33,11 @@ App.User = Ember.Object.extend
     @get('profileImageUrl').replace(/_normal(\.[a-zA-Z]+)/, '_reasonably_small$1')
   ).property('profileImageUrl')
 
+  profileCardImageUrlHttps: Ember.computed(->
+    return undefined unless @get('profileImageUrlHttps')?
+    @get('profileImageUrlHttps').replace(/_normal(\.[a-zA-Z]+)/, '_reasonably_small$1')
+  ).property('profileImageUrlHttps')
+
 App.User.reopenClass
   find: (options) ->
     user = App.User.create(options)

@@ -5,7 +5,7 @@
     .tweet.clearfix.thumbnail
       .profile-image
         %a{bind: {href: 'view.content.user.profileUrl'}}
-          %img{bind: {src: 'view.content.user.profileImageUrl'}}
+          %img{bind: {src: 'view.content.user.profileImageUrlHttps'}}
       .date.pull-right
         {{view.humanReadableDate}}
       %div

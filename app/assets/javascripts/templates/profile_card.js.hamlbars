@@ -1,7 +1,7 @@
 .profile-card.thumbnail.clearfix
   = if_ 'view.content.loaded' do
     .profile-image-container
-      %img.profile-image{bind: {src: 'view.content.profileCardImageUrl'}, alt: ''}
+      %img.profile-image{bind: {src: 'view.content.profileCardImageUrlHttps'}, alt: ''}
     .stats
       %p
         %span.stats-count {{view.content.statusesCount}}
