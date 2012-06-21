@@ -1,7 +1,6 @@
 #= require app
 
 App.Router = Ember.Router.extend
-  enableLogging: true
   location: 'hash'
 
   root: Ember.Route.extend
