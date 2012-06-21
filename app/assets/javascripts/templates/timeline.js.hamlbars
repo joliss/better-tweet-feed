@@ -1,2 +1,6 @@
-= each 'tweet in view.content' do
-  = view 'App.TweetRowView contentBinding="tweet" showRetweetsBinding="view.showRetweets" showRepliesBinding="view.showReplies"'
+= if_ 'view.content.loaded' do
+  = each 'tweet in view.content' do
+    = view 'App.TweetRowView contentBinding="tweet" showRetweetsBinding="view.showRetweets" showRepliesBinding="view.showReplies"'
+  = else_
+  .loading-notice
+    Loading...

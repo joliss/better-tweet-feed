@@ -3,3 +3,10 @@
  *= require_self
  *= require_tree .
  */
+
+@import "variables";
+
+.loading-notice {
+  color: $gray;
+  margin: 20px 0;
+}
