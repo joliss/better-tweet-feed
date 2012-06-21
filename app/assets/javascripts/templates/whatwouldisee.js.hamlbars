@@ -1,5 +1,3 @@
-= view 'App.WhatwouldiseeFormView'
-%hr
 = view 'App.ProfileCardView contentBinding="user"'
 %form.form-inline.timeline-options
   %label.checkbox

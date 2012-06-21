@@ -19,11 +19,6 @@ App.Router = Ember.Router.extend
             router.transitionTo('root.whatwouldisee.show', App.User.find(screenName: screenName))
         $('.js-whatwouldisee-input').focus()
 
-      index: Ember.Route.extend
-        route: '/'
-        connectOutlets: (router, context) ->
-          router.get('applicationController').connectOutlet('whatwouldiseeForm')
-
       show: Ember.Route.extend
         route: '/:user'
 

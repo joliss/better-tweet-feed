@@ -1,6 +1,6 @@
 #= require app
 
-# Top-level
+# Top-level views
 
 App.ApplicationController = Ember.Controller.extend()
 
@@ -14,11 +14,6 @@ App.HomeController = Ember.Controller.extend
 
 App.HomeView = Ember.View.extend
   templateName: 'templates/home'
-
-App.WhatwouldiseeFormController = Ember.Controller.extend()
-
-App.WhatwouldiseeFormView = Ember.View.extend
-  templateName: 'templates/whatwouldisee_form'
 
 App.WhatwouldiseeController = Ember.Controller.extend
   userBinding: 'content'
@@ -86,5 +81,4 @@ App.TweetRowView = Ember.View.extend
       "#{Math.round(delta/3600/24)}d"
     else
       new Date(@getPath('content.createdAt')).toDateString()
-
   ).property('content.createdAt', 'App.date')
