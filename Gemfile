@@ -5,7 +5,7 @@ gem 'rails', '3.2.6'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-
+gem 'thin'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -25,7 +25,7 @@ end
 gem 'jquery-rails'
 
 group :test, :development do
-  gem 'konacha', git: 'https://github.com/jfirebaugh/konacha'
+  #gem 'konacha', git: 'https://github.com/jfirebaugh/konacha'
 end
 
 # To use ActiveModel has_secure_password
