@@ -4,9 +4,10 @@ with OAuth.
 It is built with [Ember.js](http://emberjs.com/) and
 [CoffeeScript](http://coffeescript.org/).
 
-This Rails app is only used to generate the asset files (JS & CSS).
+This Rails app is only used to generate the asset files (JS & CSS), which
+reside in `app/assets`.
 
-It runs on the [Twitter API
+It needs to run on top of the [Twitter API
 Forwarder](https://github.com/joliss/twitter-forwarder).
 
 ```
