@@ -7,14 +7,15 @@
         %form.navbar-search{event: {on: 'submit', action: 'doLookUp'}}
           %input.search-query.js-user-search-input{type: 'text', placeholder: '@user'}
       .pull-right
-        = if_ 'App.signedIn' do
-          %ul.nav
-            %li
+        %ul.nav
+          %li
+            %a{href: 'https://github.com/joliss/better-tweet-feed'}
+              GitHub
+          %li
+            = if_ 'App.signedIn' do
               %a{href: '/sessions/signout'}
                 Sign out
-          = else_
-          %ul.nav
-            %li
+              = else_
               %a{href: '/sessions/connect'}
                 Sign in with Twitter
 
