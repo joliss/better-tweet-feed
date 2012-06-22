@@ -20,10 +20,6 @@ App.User = Ember.Object.extend
     App.UserTimeline.find(screenName: @get('screenName'))
   ).property('screenName')
 
-  profileUrl: Ember.computed(->
-    App.Helpers.profileUrl(@get('screenName'))
-  ).property('name')
-
   twitterProfileUrl: Ember.computed(->
     "https://twitter.com/#{@get('screenName')}"
   ).property('screenName')
@@ -41,6 +37,7 @@ App.User = Ember.Object.extend
 App.User.reopenClass
   find: (options) ->
     user = App.User.create(options)
+    user.set('_loading', true)
     query = getQuery(options)
     $.ajax
       method: 'get'
@@ -54,7 +51,7 @@ App.User.reopenClass
           delete userData.status
         user.set('name', userData.name)
         user.setProperties userData
-        user.set('loaded', true)
+        user.set('_loading', false)
     user
 
 App.Tweet = Ember.Object.extend()
@@ -75,24 +72,25 @@ makeTimeline = (data) ->
 App.UserTimeline.reopenClass
   find: (options) ->
     timeline = App.UserTimeline.create(options)
+    timeline.set('_loading', true)
     query = getQuery(options)
     $.ajax
       method: 'get'
       url: "/twitter-api/1/statuses/user_timeline.json?#{query}&include_rts=true&include_entities=true&count=20"
       success: (data) =>
         timeline.set 'content', makeTimeline(data)
-        timeline.set 'loaded', true
+        timeline.set '_loading', false
     timeline
 
 App.HomeTimeline = Ember.ArrayProxy.extend()
 
 App.HomeTimeline.reopenClass
   find: ->
-    timeline = App.HomeTimeline.create()
+    timeline = App.HomeTimeline.create(_loading: true)
     $.ajax
       method: 'get'
       url: "/twitter-api/1/statuses/home_timeline.json?include_rts=true&include_entities=true&count=20"
       success: (data) =>
         timeline.set 'content', makeTimeline(data)
-        timeline.set 'loaded', true
+        timeline.set '_loading', false
     timeline

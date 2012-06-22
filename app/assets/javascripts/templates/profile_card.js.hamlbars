@@ -1,5 +1,5 @@
 .profile-card.thumbnail.clearfix
-  = if_ 'view.content.loaded' do
+  = unless_ 'view.content._loading' do
     .profile-image-container
       %img.profile-image{bind: {src: 'view.content.profileCardImageUrlHttps'}, alt: ''}
     .stats

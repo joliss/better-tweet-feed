@@ -4,12 +4,12 @@
     = else_
     .tweet.clearfix.thumbnail
       .profile-image
-        %a{bind: {href: 'view.content.user.profileUrl'}}
+        %a{event: {action: 'goToUserProfile', context: 'view.content.user', href: true}}
           %img{bind: {src: 'view.content.user.profileImageUrlHttps'}}
       .date.pull-right
         {{view.humanReadableDate}}
       %div
-        %a{bind: {href: 'view.content.user.profileUrl'}}
+        %a{event: {action: 'goToUserProfile', context: 'view.content.user', href: true}}
           %span.full-name
             {{view.content.user.name}}
           %span.screen-name

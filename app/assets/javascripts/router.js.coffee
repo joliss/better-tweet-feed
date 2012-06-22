@@ -1,7 +1,7 @@
 #= require app
 
 App.Router = Ember.Router.extend
-  location: 'hash'
+  location: 'history'
 
   root: Ember.Route.extend
     index: Ember.Route.extend
@@ -13,7 +13,7 @@ App.Router = Ember.Router.extend
       route: '/:user'
 
       serialize: (router, context) ->
-        return user: context.screenName
+        return user: context.get('screenName')
 
       deserialize: (router, context) ->
         return App.User.find(screenName: context.user)
@@ -26,3 +26,6 @@ App.Router = Ember.Router.extend
         Ember.run =>
           router.transitionTo('root.userProfile', App.User.find(screenName: screenName))
       $('.js-user-search-input').val('').blur()
+
+    goToUserProfile: Ember.Route.transitionTo('root.userProfile')
+    goToRoot: Ember.Route.transitionTo('root.index')

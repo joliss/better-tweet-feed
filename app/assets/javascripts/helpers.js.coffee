@@ -2,11 +2,6 @@
 
 App.Helpers = Ember.Namespace.create()
 
-App.Helpers.profileUrl = (screenName) ->
-  return "#" unless /^[a-zA-Z0-9_]+$/.exec(screenName)
-  #"https://twitter.com/#{screenName}"
-  "/#/#{screenName}"
-
 App.Helpers.camelizeObject = (o) ->
   for own key, value of o
     if (c = Ember.String.camelize(key)) != key
