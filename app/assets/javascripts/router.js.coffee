@@ -21,11 +21,12 @@ App.Router = Ember.Router.extend
       connectOutlets: (router, context) ->
         router.get('applicationController').connectOutlet('userProfile', context)
 
+    goToUserProfile: Ember.Route.transitionTo('root.userProfile')
+    goToRoot: Ember.Route.transitionTo('root.index')
+
+    # Called as action on the navigation bar. This should live someplace else.
     doLookUp: (router, e) ->
       if screenName = $('.js-user-search-input').val().replace(/^@/, '')
         Ember.run =>
           router.transitionTo('root.userProfile', App.User.find(screenName: screenName))
       $('.js-user-search-input').val('').blur()
-
-    goToUserProfile: Ember.Route.transitionTo('root.userProfile')
-    goToRoot: Ember.Route.transitionTo('root.index')
