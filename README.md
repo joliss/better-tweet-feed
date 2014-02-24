@@ -1,6 +1,8 @@
 *Better Tweet Feed* is a Twitter web frontend running against the Twitter API
 with OAuth.
 
+**Twitter updated their API, and this app does not seem to work anymore.**
+
 It is built with [Ember.js](http://emberjs.com/) and
 [CoffeeScript](http://coffeescript.org/).
 
